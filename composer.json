@@ -1,0 +1,24 @@
+{
+    "name": "newridetech/php-classnames",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Mateusz Charytoniuk",
+            "email": "mateusz.charytoniuk@newride.tech"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Newride\\Classnames\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Newride\\Classnames\\tests\\": "tests/"
+        }
+    },
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "~7"
+    }
+}
