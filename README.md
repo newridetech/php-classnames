@@ -4,7 +4,9 @@ This package is a PHP port of https://github.com/JedWatson/classnames.
 
 The only difference is that `Classnames` deduplicate classes by default.
 It means that `Classnames::make('foo', 'foo', 'bar)` returns `'foo bar'`
-instead of `foo foo bar` by default.
+instead of `foo foo bar` by default. It's because redraws in PHP do not
+happen that often as they do in JavaScript (original implementation) so 
+it's not an issue but the output code is cleaner.
 
 If you want to use `Classnames` without deduplication you can call
 `Classnames::flatten`.
