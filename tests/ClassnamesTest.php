@@ -7,21 +7,21 @@ use Newride\Classnames\tests\fixtures\Stringable;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
-class createTest extends TestCase
+class ClassnamesTest extends TestCase
 {
     public function validClassNamesProvider()
     {
         return [
-            [ 'foo bar', [ 'foo', 'bar' ] ],
-            [ 'foo bar', [ 'foo', [ 'bar' => true ] ] ],
-            [ 'foo-bar', [ [ 'foo-bar' => true ] ] ],
-            [ '', [ [ 'foo-bar' => false ] ] ],
-            [ 'foo bar', [ [ 'foo' => true ], [ 'bar' => true ] ] ],
-            [ 'foo bar', [ [ 'foo' => true, 'bar' => true ] ] ],
-            [ 'foo bar', [ 'foo', 'foo', 'bar' ] ],
-            [ '1 2 3', [ 1, 2, 3 ] ],
-            [ 'booz', [ new Stringable('booz') ] ],
-            [ 'foo', [ null, false, '', 'foo' ] ],
+            ['foo bar', ['foo', 'bar']],
+            ['foo bar', ['foo', ['bar' => true]]],
+            ['foo-bar', [['foo-bar' => true]]],
+            ['', [['foo-bar' => false]]],
+            ['foo bar', [['foo' => true], ['bar' => true]]],
+            ['foo bar', [['foo' => true, 'bar' => true]]],
+            ['foo bar', ['foo', 'foo', 'bar']],
+            ['1 2 3', [1, 2, 3]],
+            ['booz', [new Stringable('booz')]],
+            ['foo', [null, false, '', 'foo']],
         ];
     }
 
@@ -36,7 +36,7 @@ class createTest extends TestCase
     public function invalidClassNamesProvider()
     {
         return [
-            [ [ new stdClass ] ],
+            [[new stdClass()]],
         ];
     }
 
