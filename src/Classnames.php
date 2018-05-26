@@ -10,6 +10,9 @@ class Classnames
             return static::string($classname);
         } elseif (is_array($classname)) {
             return static::array($classname);
+        } elseif (!is_object($classname)) {
+            // null, bool, etc
+            return '';
         }
 
         return static::object($classname);

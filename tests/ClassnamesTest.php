@@ -21,6 +21,7 @@ class createTest extends TestCase
             [ 'foo bar', [ 'foo', 'foo', 'bar' ] ],
             [ '1 2 3', [ 1, 2, 3 ] ],
             [ 'booz', [ new Stringable('booz') ] ],
+            [ 'foo', [ null, false, '', 'foo' ] ],
         ];
     }
 
