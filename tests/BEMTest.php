@@ -12,14 +12,22 @@ class BEMTest extends TestCase
         $this->assertSame('foo', BEM::modifier('foo', null));
     }
 
+    public function testThatStringModifierCopiesClass()
+    {
+        $this->assertSame('foo', BEM::modifier('foo', ''));
+    }
+
     public function testThatModifierGeneratesClass()
     {
         $this->assertSame('foo foo--bar', BEM::modifier('foo', 'bar'));
     }
 
-    public function testThatStringModifierCopiesClass()
+    public function testThatClassnamesStyleCanBeUsed()
     {
-        // it's still a strong? who am I to guess the user intentions :P
-        $this->assertSame('foo foo--', BEM::modifier('foo', ''));
+        $this->assertSame('foo foo--bar foo--booz', BEM::modifier('foo', [
+            'bar' => true,
+            'baz' => false,
+            'booz' => true,
+        ]));
     }
 }

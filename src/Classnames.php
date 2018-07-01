@@ -27,19 +27,16 @@ class Classnames
 
     public static function flatten(...$classnames): string
     {
-        $ret = array_reduce($classnames, function (string $carry, $classname): string {
-            return $carry.' '.trim(static::any($classname));
-        }, '');
+        $ret = static::reduce($classnames);
 
-        return trim($ret);
+        return implode(' ', $ret);
     }
 
     public static function make(...$classnames): string
     {
-        $flattened = static::flatten(...$classnames);
-        $flattened = explode(' ', $flattened);
+        $reduced = static::reduce($classnames);
 
-        return implode(' ', array_unique($flattened));
+        return implode(' ', array_unique($reduced));
     }
 
     public static function object(object $classname): string
@@ -53,6 +50,19 @@ class Classnames
         $string = strval($classname);
 
         return static::string($string);
+    }
+
+    public static function reduce(array $classnames): array
+    {
+        return array_reduce($classnames, function (array $carry, $classname): array {
+            $parsed = trim(static::any($classname));
+
+            if (!empty($parsed)) {
+                $carry[] = $parsed;
+            }
+
+            return $carry;
+        }, []);
     }
 
     public static function string(string $classname): string

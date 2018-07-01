@@ -4,12 +4,19 @@ namespace Newride\Classnames;
 
 class BEM
 {
-    public static function modifier(string $baseClass, string $modifier = null): string
+    public static function modifier(string $baseClass, ...$modifiers): string
     {
-        if (is_null($modifier)) {
+        if (empty($modifiers)) {
             return $baseClass;
         }
 
-        return Classnames::make($baseClass, $baseClass.'--'.$modifier);
+        $flattened = Classnames::flatten(...$modifiers);
+        $flattened = explode(' ', $flattened);
+        $flattened = array_filter($flattened);
+        $flattened = array_map(function (string $modifier) use ($baseClass): string {
+            return $baseClass.'--'.$modifier;
+        }, $flattened);
+
+        return Classnames::make($baseClass, ...$flattened);
     }
 }
